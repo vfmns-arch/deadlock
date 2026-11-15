@@ -6,7 +6,7 @@
 #include <sys/types.h>
 
 #define CUSTOMER_FILE "customer.txt"
-#define COMMAND_FILE "command.txt"
+#define COMMAND_FILE "commands.txt"
 #define RESULT_FILE "result.txt"
 
 typedef struct {
@@ -266,7 +266,7 @@ void execute_command(Banker *b, FILE *out, const char *operation, int customer, 
       }
       fprintf(out, "The customer %d request ", customer);
       print_vector(out, request, b->resources);
-      fprintf(out, " was denied because result is an unsafe state\n");
+      fprintf(out, " was denied because result in an unsafe state\n");
     }
   } else if(strcmp(operation, "RL") == 0){
     for(int j = 0; j < b->resources; j++){
