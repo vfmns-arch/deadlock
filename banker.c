@@ -12,7 +12,7 @@
 typedef struct {
   int customers;
   int resources;
-  int *available
+  int *available;
   int **maximum;
   int **allocation;
   int **need;
@@ -32,6 +32,7 @@ int **create_matrix(int rows, int cols){
     matrix[i] = calloc(cols, sizeof(int));
     if(!matrix[i]){
     error("Memory allocation failed.");
+    }
   }
   return matrix;
 }
@@ -219,7 +220,7 @@ void print_state(FILE *out, Banker *b){
   return;
 }
 
-void execute_command(Banker *b, FILE *out, const *char operation, int customer, int *request){
+void execute_command(Banker *b, FILE *out, const char *operation, int customer, int *request){
   if(customer < 0 || customer >= b->customers){
     error("Invalid customer index in commands.txt.");
   }
@@ -399,7 +400,7 @@ int main(int argc, char *argv[])
     }
 
     read_customers(&b);
-    read_commands(&b);
+    read_command(&b);
 
     free(b.available);
     free_matrix(b.maximum, b.customers);
